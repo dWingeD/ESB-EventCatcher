@@ -1,14 +1,17 @@
 package com.winged.eventcatcher.client;
 
 
+import java.io.Serializable;
 import java.util.Date;
 
 
-public class Event {
+public class Event implements Serializable {
 
     private Date date;
 
     private String description;
+
+    private String email;
 
 
     public Date getDate() {
@@ -25,5 +28,13 @@ public class Event {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

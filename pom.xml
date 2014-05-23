@@ -28,6 +28,8 @@
     <modules>
         <module>client</module>
         <module>splitter</module>
+        <module>transformer</module>
+        <module>notifier</module>
     </modules>
     
 </project>
