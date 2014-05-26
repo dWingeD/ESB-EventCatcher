@@ -33,13 +33,17 @@ public class EventTransformer {
             e.printStackTrace();
         }
 
+        logger.info("// ---- Event receive on transformation : " + message);
+//        return message;
         return transformToEvent(message);
     }
 
     private Event transformToEvent(String message) {
         Event result = new Event();
 
-        String[] values = message.split("|");
+        String[] values = message.split("\\|");
+        logger.info("// ---- Event splitted : " + values);
+
         result.setDescription(values[1]);
         result.setEmail(values[2]);
         try {

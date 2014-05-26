@@ -8,11 +8,17 @@
     <camelContext xmlns="http://camel.apache.org/schema/blueprint">
         <route>
             <from uri="file:event_cather/events" />
-            <bean  ref="myTransform" method="transform"/>
-            <to uri="activemq:queue:messages" />
+            <bean  ref="transformer" method="transform"/>
+            <to uri="activemq:queue:EVENTS" />
         </route>
     </camelContext>
 
     <bean id="transformer" class="com.winged.eventcatcher.transformer.EventTransformer" />
+
+    <!-- use CF from ActiveMQ blueprint service running in container -->
+    <reference id="connectionFactory" interface="javax.jms.ConnectionFactory" />
+    <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
+        <property name="connectionFactory" ref="connectionFactory" />
+    </bean>
 
 </blueprint>

@@ -10,7 +10,7 @@
 
     <artifactId>notifier</artifactId>
     <packaging>bundle</packaging>
-    <name>Splitter</name>
+    <name>Notifier</name>
 
 
     <repositories>
