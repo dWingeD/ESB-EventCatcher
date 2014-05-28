@@ -7,9 +7,11 @@
 
     <camelContext xmlns="http://camel.apache.org/schema/blueprint">
         <route>
-            <from uri="file:wng/input" />
-            <log message="Moving ${file:name} to the splitter"/>
-            <to uri="bean:splitter" />
+            <from uri="file:event_cather/upload" />
+            <split>
+                <method ref="splitter" method="split"/>
+                <to uri="file:event_cather/events?fileName=${file:onlyname.noext}-${date:now:yyyy:MM:dd-HH:mm:ss:SSS}.${file:ext}" />
+            </split>
         </route>
     </camelContext>
 
