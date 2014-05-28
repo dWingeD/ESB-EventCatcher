@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 public class EventTransformer {
 
     private static final transient Logger logger = Logger.getLogger(EventTransformer.class.getName());
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMddYYYY");
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMddyyyy");
 
 
     public Object transform(Object messageFile) {
@@ -34,7 +34,6 @@ public class EventTransformer {
         }
 
         logger.info("// ---- Event receive on transformation : " + message);
-//        return message;
         return transformToEvent(message);
     }
 
