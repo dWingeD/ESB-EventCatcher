@@ -3,6 +3,7 @@ package com.winged.eventcatcher.notifier;
 
 import com.winged.eventcatcher.client.Event;
 
+import java.text.SimpleDateFormat;
 import java.util.Properties;
 import java.util.logging.Logger;
 
@@ -18,6 +19,8 @@ public class EventNotifier {
 
     private static final transient Logger logger = Logger.getLogger(EventNotifier.class.getName());
 
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMMMM dd, yyyy");
+
     private static final String ACCOUNT_USERNAME = "your_mail@gmail.com";
     private static final String ACCOUNT_PASS = "your_password";
 
@@ -26,7 +29,7 @@ public class EventNotifier {
     private static final String SMTP_HOST = "smtp.gmail.com";
     private static final String SMTP_PORT = "587";
 
-    private static final String MESSAGE_FORMAT = "You have new notification: \n\"%s\"\nDate: %s";
+    private static final String MESSAGE_FORMAT = "You have new notification: \n\n\"%s\"\n\nDate: %s";
 
 
     public void notify(Object message) {
@@ -59,7 +62,7 @@ public class EventNotifier {
                     InternetAddress.parse(event.getEmail())
             );
             message.setSubject("Event Catcher");
-            message.setText(String.format(MESSAGE_FORMAT, event.getDescription(), event.getDate().toString()));
+            message.setText(String.format(MESSAGE_FORMAT, event.getDescription(), DATE_FORMAT.format(event.getDate())));
 
             Transport.send(message);
 
